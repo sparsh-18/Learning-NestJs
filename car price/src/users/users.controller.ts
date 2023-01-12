@@ -1,13 +1,13 @@
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  NotFoundException,
-  Param,
-  Patch,
-  Post,
-  Query,
+	Body,
+	Controller,
+	Delete,
+	Get,
+	NotFoundException,
+	Param,
+	Patch,
+	Post,
+	Query,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
@@ -15,40 +15,38 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 
 @Controller('auth')
 export class UsersController {
-  constructor(private userService: UsersService) {}
+	constructor(private userService: UsersService) { }
 
-  @Post('/signup')
-  createUser(@Body() body: CreateUserDto) {
-    this.userService.create(body.email, body.password);
-  }
+	@Post('/signup')
+	createUser(@Body() body: CreateUserDto) {
+		this.userService.create(body.email, body.password);
+	}
 
-  @Get('/:id')
-  async findUser(@Param('id') id: string) {
-    const user = await this.userService.findOne(parseInt(id));
+	@Get('/:id')
+	async findUser(@Param('id') id: string) {
+		const user = await this.userService.findOne(parseInt(id));
 
-    if(!user)
-      throw new NotFoundException('user not found');
-    
-    return user;
-  }
+		if (!user) throw new NotFoundException('user not found');
 
-  @Get('/')
-  async findAllUsers(@Query('email') email: string) {
-    const users = await this.userService.find(email);
-    
-    if(!users)
-      throw new NotFoundException('user not found');
-    
-    return users;
-  }
+		return user;
+	}
 
-  @Delete('/delete/:id')
-  removeUser(@Param('id') id: string) {
-    return this.userService.remove(parseInt(id));
-  }
+	@Get('/')
+	async findAllUsers(@Query('email') email: string) {
+		const users = await this.userService.find(email);
 
-  @Patch('/update/:id')
-  updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
-    return this.userService.update(parseInt(id), body);
-  }
+		if (!users) throw new NotFoundException('user not found');
+
+		return users;
+	}
+
+	@Delete('/delete/:id')
+	removeUser(@Param('id') id: string) {
+		return this.userService.remove(parseInt(id));
+	}
+
+	@Patch('/update/:id')
+	updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
+		return this.userService.update(parseInt(id), body);
+	}
 }
