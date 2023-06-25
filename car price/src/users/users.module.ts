@@ -10,11 +10,13 @@ import { CurrentUserInterceptor } from 'src/interceptors/current-user.intercepto
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
-  providers: [UsersService, AuthService,
+  providers: [
+    UsersService,
+    AuthService,
     {
       provide: APP_INTERCEPTOR,
-      useClass: CurrentUserInterceptor
-    } // this makes the CurrentUserInterceptor globally scoped to all requests
+      useClass: CurrentUserInterceptor,
+    }, // this makes the CurrentUserInterceptor globally scoped to all requests
   ],
 })
 export class UsersModule {}

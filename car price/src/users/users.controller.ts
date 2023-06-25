@@ -25,7 +25,10 @@ import { AuthGuard } from 'src/guards/auth.guard';
 // @UseInterceptors(new SerializeInterceptor(UserDto)) // removes password from response
 @Serialize(UserDto)
 export class UsersController {
-  constructor(private userService: UsersService, private authService: AuthService) {}
+  constructor(
+    private userService: UsersService,
+    private authService: AuthService,
+  ) {}
 
   @Post('/signup')
   async createUser(@Body() body: CreateUserDto, @Session() session: any) {
@@ -45,14 +48,14 @@ export class UsersController {
   @Get('/profile')
   async userProfile(@CurrentUser() currentUser: User) {
     console.log(currentUser);
-    
+
     return currentUser;
   }
 
   @Get('/logout')
   async userLogout(@Session() session: any) {
     session.userId = null;
-    return "OK"
+    return 'OK';
   }
 
   @Get('/:id')
