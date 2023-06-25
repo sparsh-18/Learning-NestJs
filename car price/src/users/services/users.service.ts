@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { User } from './user.entity';
+import { User } from '../user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { isNotEmpty } from 'class-validator';
@@ -11,20 +11,21 @@ export class UsersService {
     private repo: Repository<User>,
   ) {}
 
-  create(email: string, password: string) {
+  async create(email: string, password: string) {
     const user = this.repo.create({ email, password });
 
-    return this.repo.save(user);
+    return await this.repo.save(user);
   }
 
   async findOne(id: number) {
+    if (!id) return null;
     return await this.repo.findOne({ where: { id } });
   }
 
-  find(email: string) {
+  async find(email: string) {
     return isNotEmpty(email)
-      ? this.repo.find({ where: { email } })
-      : this.repo.find();
+      ? await this.repo.find({ where: { email } })
+      : await this.repo.find();
   }
 
   async update(id: number, attrs: Partial<User>) {
