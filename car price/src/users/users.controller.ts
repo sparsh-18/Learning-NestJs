@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   NotFoundException,
   Param,
   Patch,
@@ -38,6 +39,7 @@ export class UsersController {
   }
 
   @Post('/signin')
+  @HttpCode(200)
   async singinUser(@Body() body: CreateUserDto, @Session() session: any) {
     const user: User = await this.authService.signin(body.email, body.password);
     session.userId = user.id;
