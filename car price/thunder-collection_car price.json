@@ -1,0 +1,144 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "car price",
+    "dateExported": "2023-10-01T11:46:46.269Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "3606f6a3-df24-46ea-9833-3f0092cad8e0",
+            "colId": "f9e54fba-69c4-496d-a9a0-75fe8bff5270",
+            "containerId": "",
+            "name": "signin",
+            "url": "localhost:3000/auth/signin",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-10-01T11:19:01.557Z",
+            "modified": "2023-10-01T11:19:38.131Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"abc@abc.com\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f73d482e-8330-41e2-a67d-9f6bfb65d8b4",
+            "colId": "f9e54fba-69c4-496d-a9a0-75fe8bff5270",
+            "containerId": "",
+            "name": "create report",
+            "url": "localhost:3000/report",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-10-01T11:19:56.971Z",
+            "modified": "2023-10-01T11:24:35.869Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"price\": 100000,\n  \"make\": \"Volkswagon\",\n  \"model\": \"V\",\n  \"year\": 1992,\n  \"lat\": 10.0000,\n  \"lng\": 11.0000,\n  \"mileage\": 40000\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "026f8cd2-8a80-4460-a93f-80f455b4254d",
+            "colId": "f9e54fba-69c4-496d-a9a0-75fe8bff5270",
+            "containerId": "",
+            "name": "estimate report",
+            "url": "localhost:3000/report/estimate?make=Volkswagon&model=V&year=1992&lat=10.0000&lng=11.0000&mileage=40000",
+            "method": "GET",
+            "sortNum": 35000,
+            "created": "2023-10-01T11:24:59.288Z",
+            "modified": "2023-10-01T11:43:16.977Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "make",
+                    "value": "Volkswagon",
+                    "isPath": false
+                },
+                {
+                    "name": "model",
+                    "value": "V",
+                    "isPath": false
+                },
+                {
+                    "name": "year",
+                    "value": "1992",
+                    "isPath": false
+                },
+                {
+                    "name": "lat",
+                    "value": "10.0000",
+                    "isPath": false
+                },
+                {
+                    "name": "lng",
+                    "value": "11.0000",
+                    "isPath": false
+                },
+                {
+                    "name": "mileage",
+                    "value": "40000",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "0591d092-492f-47b8-8918-2845157356be",
+            "colId": "f9e54fba-69c4-496d-a9a0-75fe8bff5270",
+            "containerId": "",
+            "name": "signup",
+            "url": "localhost:3000/auth/signup",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-10-01T11:21:26.047Z",
+            "modified": "2023-10-01T11:21:26.047Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"abc2@abc.com\",\n  \"password\": \"1234\",\n  \"admin\": false\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "87cac65d-0717-468a-a47b-29987298aad2",
+            "colId": "f9e54fba-69c4-496d-a9a0-75fe8bff5270",
+            "containerId": "",
+            "name": "profile",
+            "url": "localhost:3000/auth/profile",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-10-01T11:21:51.152Z",
+            "modified": "2023-10-01T11:21:51.152Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "51426797-8154-470e-9b1e-7a83965ad3f4",
+            "colId": "f9e54fba-69c4-496d-a9a0-75fe8bff5270",
+            "containerId": "",
+            "name": "approve report",
+            "url": "localhost:3000/report/4",
+            "method": "PATCH",
+            "sortNum": 60000,
+            "created": "2023-10-01T11:22:17.600Z",
+            "modified": "2023-10-01T11:41:18.745Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"approved\": true\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
