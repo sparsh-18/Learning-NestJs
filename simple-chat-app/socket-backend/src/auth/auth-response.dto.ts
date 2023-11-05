@@ -1,13 +1,17 @@
 import { Expose } from "class-transformer";
 import { IsOptional } from "class-validator";
 
-export class AuthDTO {
+export class AuthResponseDTO {
 
     @Expose()
     @IsOptional()
-    username: string;
+    access_token: string;
 
     @Expose()
     @IsOptional()
-    password: string;
+    refresh_token: string;
+
+    @Expose()
+    @IsOptional()
+    expiry: string;
 }

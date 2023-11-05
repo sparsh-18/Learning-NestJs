@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post } from '@nestjs/common';
 import { UserDTO } from './user.dto';
 import { UserService } from './user.service';
+import { Public } from 'src/utils/public.util';
 
 @Controller('user')
 export class UserController {
@@ -9,6 +10,7 @@ export class UserController {
 
     @Post()
     @HttpCode(201)
+    @Public()
     async create(@Body() dto: UserDTO) {
         return this.userService.create(dto);
     }
