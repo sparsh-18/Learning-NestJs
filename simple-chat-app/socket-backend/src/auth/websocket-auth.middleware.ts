@@ -18,10 +18,11 @@ export class WebsocketAuthMiddleware implements NestMiddleware {
 	 * the chain. It is called to pass control to the next middleware function.
 	 */
 	async use(client: Socket, next: () => void) {
-		if (isEmpty(client.handshake?.headers)) {
+		if (isEmpty(client.handshake?.headers?.authorization)) {
 			this.logger.error('Auth token not found');
 			client.emit('unauthorized', { message: 'Auth token not found' });
 			client.disconnect(true); // Disconnect the client if there is no authorization header
+			return next();
 		}
 
 		try {
