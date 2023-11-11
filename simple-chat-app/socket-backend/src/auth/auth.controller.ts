@@ -9,28 +9,28 @@ import { UserService } from 'src/user/user.service';
 
 @Controller('auth')
 export class AuthController {
-    constructor(
-        private authService: AuthService,
-        private userService: UserService
-    ) { }
+	constructor(
+		private authService: AuthService,
+		private userService: UserService,
+	) {}
 
-    @Post('register')
-    @Public()
-    async register(@Body() dto:UserDTO) {
-        return this.userService.create(dto);
-    }
+	@Post('register')
+	@Public()
+	async register(@Body() dto: UserDTO) {
+		return this.userService.create(dto);
+	}
 
-    @Post('login')
-    @Public()
-    @UseGuards(LocalAuthGuard)
-    async login(@Req() req: Request) {
-        return this.authService.login(req.user as UserDTO);
-    }
+	@Post('login')
+	@Public()
+	@UseGuards(LocalAuthGuard)
+	async login(@Req() req: Request) {
+		return this.authService.login(req.user as UserDTO);
+	}
 
-    @Post('renew-token')
-    @Public()
-    @UseGuards(RefreshJwtAuthGuard)
-    async renewToken(@Req() req: Request) {
-        return this.authService.renewToken(req.user as UserDTO);
-    }
+	@Post('renew-token')
+	@Public()
+	@UseGuards(RefreshJwtAuthGuard)
+	async renewToken(@Req() req: Request) {
+		return this.authService.renewToken(req.user as UserDTO);
+	}
 }
