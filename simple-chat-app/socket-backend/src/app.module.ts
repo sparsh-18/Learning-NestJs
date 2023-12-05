@@ -18,11 +18,15 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 		TypeOrmModule.forRootAsync({
 			inject: [ConfigService],
 			useFactory: (config: ConfigService) => ({
-				type: 'sqlite',
-				database: config.get<string>('DB_NAME'),
+				type: 'mysql',
+				database: config.get<string>('MYSQL_DATABASE'),
 				entities: [User],
 				synchronize: true,
 				logging: true,
+				port: parseInt(config.get<string>('MYSQL_PORT')),
+				host: config.get<string>('MYSQL_DOCKER_IMAGE_NAME'),
+				username: config.get<string>('MYSQL_USERNAME'),
+				password: config.get<string>('MYSQL_PASSWORD')
 			}),
 		}),
 		UserModule,

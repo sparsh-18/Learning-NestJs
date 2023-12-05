@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql:8.2
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/mysql
+      # dont give a space after colon above as it is a mapping
+
+  backend:
+    build: ./
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+
+volumes:
+  db-data:
